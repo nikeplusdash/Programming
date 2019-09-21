@@ -1,0 +1,11 @@
+cpp:
+  PS: g++ {filename}.cpp
+      .\filename
+  CMD: g++ -o {filename} filename.cpp&filename.exe
+
+java:
+  javac {filename}.java
+  java filename
+
+python:
+  python {filename}
