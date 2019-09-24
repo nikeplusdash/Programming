@@ -6,12 +6,14 @@ class Node {
     int data;
     Node* next;
     public:
-    void Insert(int x);
-    void Insert_beginning(int x);
+    void Insert(int);
+    void Insert_beginning(int);
+    void Insert_recursive(int,Node*);
     void Delete();
     void Delete_first();
-    void Delete(int x);
+    void Delete(int);
     void Display();
+    void Display_recursive(Node*);
     void Reverse();
     void Sort();
 } *head=NULL;
@@ -36,6 +38,19 @@ void Node::Insert_beginning(int x){
     temp->next = head;
     head = temp;
     return;
+}
+
+void Node::Insert_recursive(int x,Node* curr){
+    if(curr == NULL) {Insert_beginning(x);return;}
+    if(curr->next == NULL){
+        Node* temp = new Node();
+        temp->data = x;
+        temp->next = NULL;
+        curr->next = temp;
+        return;
+    }
+    Insert_recursive(x,curr->next);
+    
 }
 
 void Node::Delete(){
@@ -83,6 +98,13 @@ void Node::Display(){
     return;
 }
 
+void Node::Display_recursive(Node* curr){
+    if(curr==NULL) {std::cout << std::endl;return;}
+    std::cout << curr->data;
+    if(curr->next!=NULL) std::cout << " -> ";
+    Display_recursive(curr->next);
+}
+
 void Node::Reverse(){
     if(head==NULL||head->next==NULL) return;
     Node* prev = head;
@@ -117,13 +139,22 @@ void Node::Sort(){
 
 int main(){
     Node n;
-    n.Insert(5);
-    n.Insert(5);n.Insert(5);n.Insert(7);n.Insert(5);n.Insert(8);n.Insert(5);n.Insert(5);n.Insert(5);n.Insert(5);n.Insert(8);
+    n.Insert_recursive(5,head);
+    n.Insert_recursive(5,head);
+    n.Insert_recursive(5,head);
+    n.Insert_recursive(7,head);
+    n.Insert_recursive(5,head);
+    n.Insert_recursive(8,head);
+    n.Insert_recursive(5,head);
+    n.Insert_recursive(5,head);
+    n.Insert_recursive(5,head);
+    n.Insert_recursive(5,head);
+    n.Insert_recursive(8,head);
     n.Insert_beginning(79);
-    n.Sort();
-    n.Display();
+    // n.Sort();
+    n.Display_recursive(head);
     n.Delete(5);
-    n.Display();
-    n.Reverse();
+    // n.Display();
+    // n.Reverse();
     n.Display();
 }
