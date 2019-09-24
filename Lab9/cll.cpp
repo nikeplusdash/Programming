@@ -63,7 +63,7 @@ void Node::Delete(int n){
 
 int main(){
 	Node list;
-    std::cout<<"\n1:Insert n\n2:Delete\n3:Display\n"<<std::endl;
+    std::cout<<"\n1:Insert n\n2:Delete\n3:Display\nHAHA"<<std::endl;
 	while(1){
 		int ip,x,n;
 		std::cin>>ip;
