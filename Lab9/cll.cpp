@@ -17,8 +17,7 @@ void Node::Insert(int x) {
     temp->data = x;
     temp->next = temp->prev = NULL;
     if(head == NULL) {head = temp;head->next = head->prev = head;return;}
-    Node* curr = head;
-    while(curr->next != head) curr = curr->next;
+    Node* curr = head->prev;
     curr->next = temp;
     temp->prev = curr;
     temp->next = head;
