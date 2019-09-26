@@ -25,8 +25,7 @@ poly* poly::Insert(int x,int n,poly* head) {
     temp->exp = n;
     temp->next = temp->prev = NULL;
     if(head == NULL) {head = temp;head->next = head->prev = head;return head;}
-    poly* curr = head;
-    while(curr->next != head) curr = curr->next;
+    poly* curr = head->prev;
     curr->next = temp;
     temp->prev = curr;
     temp->next = head;
@@ -43,25 +42,26 @@ poly* poly::Create(poly* head) {
         std::cin >> n;
         if(n == -1) break;
         if(x == 0) continue;
-        head = head->Insert(x,n,head);
+        head = Insert(x,n,head);
     }
+    head = Remove(Sort(head));
     return head;
 }
 
 poly* poly::Add(poly* head1,poly* head2) {
-    poly* i = Sort(head1);
-    poly* j = Sort(head2);
+    poly* i = head1;
+    poly* j = head2;
     poly* list = NULL;
     poly* end1 = head1->prev;
     poly* end2 = head2->prev;
     end1->next = end2->next = NULL;
     while(i != NULL && j != NULL) {
         if(j->exp > i->exp) {
-            list = list->Insert(j->coeff,j->exp,list);
+            list = Insert(j->coeff,j->exp,list);
             j = j->next;
         }
         else if(i->exp > j->exp) {
-            list = list->Insert(i->coeff,i->exp,list);
+            list = Insert(i->coeff,i->exp,list);
             i = i->next;   
         }
         else {
@@ -170,8 +170,8 @@ int main() {
     poly2 = p.Create(poly2);
     std::cout << std::endl;
 
-    p.Display(p.Sort(poly1));
-    p.Display(p.Sort(poly2));
+    p.Display(poly1);
+    p.Display(poly2);
 
     sum = p.Add(poly1,poly2);
     p.Display(sum);
