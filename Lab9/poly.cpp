@@ -62,20 +62,20 @@ poly* poly::Add(poly* head1,poly* head2) {
         }
         else if(i->exp > j->exp) {
             list = Insert(i->coeff,i->exp,list);
-            i = i->next;   
+            i = i->next;
         }
         else {
             list = list->Insert(i->coeff+j->coeff,i->exp,list);
             i = i->next;
             j = j->next;
         }
-    } 
+    }
     while(i != NULL) {
         list = list->Insert(i->coeff,i->exp,list);i = i->next;
     }
     while(j != NULL) {
         list = list->Insert(j->coeff,j->exp,list);j = j->next;
-    } 
+    }
     end1->next = head1;end2->next = head2;
     return list;
 }
@@ -99,6 +99,7 @@ poly* poly::Mul(poly* head1,poly* head2) {
 }
 
 poly* poly::Remove(poly* head) {
+    if(head->next == head) return head;
     poly* i = head;
     do {
         poly* j = i->next;
@@ -113,7 +114,7 @@ poly* poly::Remove(poly* head) {
                 continue;
             }
             j=j->next;
-            
+
         } while(j != head);
         i=i->next;
     } while(i->next != head);
@@ -121,6 +122,7 @@ poly* poly::Remove(poly* head) {
 }
 
 poly* poly::Sort(poly* head) {
+    if(head->next == head) return head;
     poly* i = head;
     do {
         poly* j = i->next;

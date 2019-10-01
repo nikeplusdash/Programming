@@ -141,12 +141,12 @@ class ll {
 
 int main(){
 	ll list;
+    std::cout<<"\n1:Insert n\n2:Insert before x\n3:Insert after x\n4:Delete n\n5:Display\n6:Reverse\n7:Sort\n8:Delete alternate\n9:Insert Sorted\n"<<std::endl;
 	while(1){
 		int ip,x,n;
-		std::cout<<"\n1:Insert n\n2:Insert before x\n3:Insert after x\n4:Delete n\n5:Display\n6:Reverse\n7:Sort\n8:Delete alternate\n9:Insert Sorted\n"<<std::endl;
 		std::cin>>ip;
 		switch(ip){
-			case 1: 
+			case 1:
                 std::cin >> x;
                 list.insert(x);
                 break;

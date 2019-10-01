@@ -48,12 +48,26 @@ void stacklist::peek(){
 
 int main(){
   stacklist n;
-  n.IsEmpty();
-  n.push(5);
-  n.push(8);
-  n.push(1);
-  n.display();
-  n.peek();
-  n.pop();
-  n.pop();
+    std::cout<<"\n1:Push n\t2:Pop\t3:Peek\t4:Display"<<std::endl;
+	while(1){
+		int ip,x;
+		std::cin>>ip;
+		switch(ip){
+			case 1:
+                std::cin >> x;
+                n.push(x);
+                break;
+            case 2:
+                n.pop();
+                break;
+            case 3:
+                n.peek();
+                break;
+            case 4:
+                n.display();
+                break;
+            default:
+                return 0;
+		}
+	}
 }
