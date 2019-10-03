@@ -31,6 +31,7 @@ public class Lab9 {
             if(s.contains("...")) break;
         }
         System.out.printf("Characters: %d\nWords: %d\nLines: %d\nVowels: %d\n", characters,words,lines,vowels);
+        in.close();
     }
 }
 
