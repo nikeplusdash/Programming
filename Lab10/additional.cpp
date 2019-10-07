@@ -61,3 +61,5 @@ int main(){
     copied = Copy(node);
     Check(node,copied)? std::cout<< "Tree is same" : std::cout <<"Tree is not same";
 }
+
+// 5 10 2 6 -1 -1 -1 3 -1 -1 11 4 -1 -1 1 -1 -1
