@@ -13,6 +13,7 @@ class Node {
     Node* Delete(int,Node*);
     Node* Display(Node*);
     Node* Reverse(Node*);
+    Node* ReverseRecursive(Node*);
 };
 
 Node* Node::Insert(int x,Node* head){
@@ -98,6 +99,14 @@ Node* Node::Reverse(Node* head){
     head = prev;
 }
 
+Node* Node::ReverseRecursive(Node* head) {
+    if(head == NULL || head->next == NULL) return head;
+    Node* rest = ReverseRecursive(head->next);
+    head->next->next = head;
+    head->next = NULL;
+    return rest;
+}
+
 int main(){
     Node* head = NULL;
     Node n;
@@ -116,6 +125,6 @@ int main(){
     head = n.Display(head);
     head = n.Delete(5,head);
     head = n.Display(head);
-    head = n.Reverse(head);
+    head = n.ReverseRecursive(head);
     head = n.Display(head);
 }
