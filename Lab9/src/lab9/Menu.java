@@ -55,6 +55,7 @@ public class Menu {
                 default:
                     break;
             }
-        }
+        in.close();
+        }   
     }
 }

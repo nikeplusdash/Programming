@@ -92,5 +92,6 @@ public class Menu2
 			}
 		}
 		while(a!=5);
+		scan.close();
 	}
 }

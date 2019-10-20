@@ -27,5 +27,6 @@ public class Replace {
         String s = in.next();
         StringBuffer str = new StringBuffer(s);
         replaceWords(str);
+        in.close();
     }
 }
