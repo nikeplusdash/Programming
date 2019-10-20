@@ -8,6 +8,6 @@
  *
  * @author nikep
  */
-public class Threading {
+public class NewClass {
     
 }

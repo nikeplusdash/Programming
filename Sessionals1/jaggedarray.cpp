@@ -18,7 +18,7 @@ class JaggedArray {
             }
         }
         void display(){
-            std::cout << "\n-----Ragged Array-----\n";
+            std::cout << "\n-----Jagged Array-----\n";
             for(int i=0;i<n;i++){
                 std::cout << i+1 << "] ";
                 for(int j=0;j<len[i];j++)

@@ -16,19 +16,19 @@ int mul(int a,int b){
 }
 
 int div(int a,int b){
-    if(a<b)   return 0;
+    if(a<b) return 0;
     return 1+div(a-b,b);
 }
 
 int pow(int x,int y){
-    if(y==0)    return 1;
+    if(y==0) return 1;
     return x*pow(x,--y);
 }
 
 
 int gcd(int x,int y){
-    if(x==0)    return y;
-    if(y==0)    return x;
+    if(x==0) return y;
+    if(y==0) return x;
     if(x==y) return x;
     if(x>y) gcd(x%y,y);
     else gcd(x,y%x);
@@ -36,7 +36,7 @@ int gcd(int x,int y){
 
 int lcm(int x,int y){
     static int large = x>y?x:y;
-    if(large%x==0&&large%y==0)  return large;
+    if(large%x==0&&large%y==0) return large;
     large++;
     lcm(x,y);
 }
