@@ -18,7 +18,7 @@ public class Lab10 {
         for(int i=0;i<s.length();i++) fos.write((byte)s.charAt(i));
         fos.close();
     }
-    public static void Read(File f) throws FileNotFoundException, IOException {
+    public static void Read(File f) throws IOException {
         FileInputStream fis;
         try {
             fis = new FileInputStream(f);
@@ -33,7 +33,7 @@ public class Lab10 {
         p("File Data:\n" + s + "\n");
         fis.close();
     }
-    public static void Copy(File f) throws FileNotFoundException, IOException {
+    public static void Copy(File f) throws IOException {
         Scanner in = new Scanner(System.in);
         FileInputStream fis;
         try {
