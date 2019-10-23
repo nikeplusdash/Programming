@@ -1,3 +1,5 @@
+package lab10;
+
 import java.util.Scanner;
 public class Q9
 {
@@ -10,20 +12,17 @@ public class Q9
         try{
             name=sc.nextLine();
             int i=Integer.parseInt(name);
-
+            System.out.println("enter roll no.");
+            roll=sc.nextInt();
+            System.out.println("Enter marks");
+            ar[0]=sc.nextInt();
+            ar[1]=sc.nextInt();
+            ar[2]=sc.nextInt();
+            System.out.println("Details");
+            System.out.println(name+" "+roll+" "+ar[0]+" "+ar[1]+" "+ar[2]);
         }
         catch (NumberFormatException e){
             System.out.println("string->int failure");
-
-
         }
-        System.out.println("enter roll no.");
-        roll=sc.nextInt();
-        System.out.println("Enter marks");
-        ar[0]=sc.nextInt();
-        ar[1]=sc.nextInt();
-        ar[2]=sc.nextInt();
-        System.out.println("Details");
-        System.out.println(name+" "+roll+" "+ar[0]+" "+ar[1]+" "+ar[2]);
     }
 }

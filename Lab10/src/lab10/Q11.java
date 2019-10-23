@@ -1,3 +1,5 @@
+package lab10;
+
 import java.util.Scanner;
 class invmatrix extends Exception
 {
@@ -11,18 +13,18 @@ public class Q11
 	public static void main(String[] args) {
 	    Scanner sc=new Scanner(System.in);
 		System.out.println("Enter mXn");
-		int m,n;
-		m=sc.nextInt();
-		n=sc.nextInt();
-		if(m!=n)
+		int[][] a={{1,2,3},{4,5,6},{7,8}};
 		try{
-		    throw new invmatrix();
+		    int rows = a.length;
+                    for(int[] i:a){
+                        int cols=i.length;
+                        if(rows!=cols)throw new invmatrix();
+                    }
 		}
 		catch(invmatrix e)
 		{
 		    System.out.println(e);
 		}
-		else
 		System.out.println("valid ");
 		
 	}

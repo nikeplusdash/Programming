@@ -1,3 +1,4 @@
+package lab10;
 
 import java.util.Scanner;
 class negativeexcep extends Exception{
@@ -15,8 +16,7 @@ public class Q12
 		try{
 		    n=sc.nextInt();
 		    if(n<0)
-		    throw new negativeexcep();
-		    
+		    throw new negativeexcep();    
 		}
 		catch (negativeexcep e)
 		{

@@ -7,7 +7,7 @@ public class Q8
         }    
         catch(ArrayIndexOutOfBoundsException e)
         {
-            System.out.println("Array index out of bounds. Do it correctly boi");
+            System.out.println("Array index out of bounds Exception");
 
         }
 

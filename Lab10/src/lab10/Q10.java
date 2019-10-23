@@ -17,7 +17,7 @@ public class Q10
 	}
 	catch (cException e)
 	{
-	   System.out.println("Exception:"+e);
+	   System.out.println("Exception: "+e);
 	}
 	}
 }
