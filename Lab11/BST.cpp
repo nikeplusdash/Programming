@@ -15,18 +15,20 @@ class Node {
         cin >> temp->data;
         temp->lc = temp->rc = NULL;
         if(!root) return temp;
-        prev = NULL; curr = temp;
+        curr = root;
         while(curr) {
             prev = curr;
             if (curr->data < temp->data) {
+                cout << temp->data <<" went to right of " << curr->data << endl;
                 curr = curr->rc;    
             }
             else if(curr->data > temp->data) {
-                curr = curr->rc;
+                cout << temp->data <<" went to left of " << curr->data << endl;
+                curr = curr->lc;
             }
             else {
                 delete temp;
-                cout << "ILLEGAL" << std::endl;
+                cout << "ILLEGAL" << endl;
                 return root;
             }
         }
@@ -37,14 +39,20 @@ class Node {
     Node* Search (Node* root,int x) {
         Node* curr = root;
         while(curr) {
-            if(curr->data == x || curr->lc->data == x || curr->rc->data == x) {
-                cout << "Found";return curr;
+            if(curr->data == x) {
+                cout << "Found" << endl;return curr;
             }
             if(x > curr->data) curr = curr->rc;
             else curr = curr->lc;
         }
-        cout << "Not found";
+        cout << "Not found" << endl;
         return NULL;
+    }
+    void Inorder(Node* root) {
+        if(!root) return;
+        Inorder(root->lc);
+        cout << root->data << " ";
+        Inorder(root->rc);
     }
     void Traverse (Node* root) {
         queue <Node*> s;
@@ -52,16 +60,18 @@ class Node {
         while (!s.empty())
         {
             Node* curr = s.front();s.pop();
-            std::cout << curr->data;
+            std::cout << curr->data << " ";
             if(curr->lc) s.push(curr->lc);
             if(curr->rc) s.push(curr->rc);
         }
-        std::cout << std::endl;
+        std::cout << "\nInorder: ";
+        Inorder(root);
+        cout << endl;
     }
     Node* Delete(Node* root,int x) {
         if(!root) return NULL;
-        else if(root->data > x) root->lc = Delete(root,x);
-        else if(root->data < x) root->rc = Delete(root,x);
+        else if(root->data > x) root->lc = Delete(root->lc,x);
+        else if(root->data < x) root->rc = Delete(root->rc,x);
         else {
             if(!root->lc && !root->rc) {
                 delete root;
@@ -89,3 +99,34 @@ class Node {
         return root;
     }
 };
+
+int main() {
+    cout << "1:Insert 2:Delete 3:Traverse 4:Search" << endl;
+    Node ref;
+    Node* root = NULL;
+    int x,i;
+    while(1){
+        cout << "Enter: ";
+        cin >> x;
+        switch(x) {
+            case 1:
+            root = ref.Insert(root);
+            break;
+            case 2:
+            cout << "Delete: ";
+            cin >> i;
+            root = ref.Delete(root,i);
+            break;
+            case 3:
+            ref.Traverse(root);
+            break;
+            case 4:
+            cout << "Search: ";
+            cin >> i;
+            ref.Search(root,i);
+            break;
+            default:
+            return 0;
+        }
+    }
+}
