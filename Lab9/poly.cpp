@@ -107,8 +107,8 @@ poly* poly::Remove(poly* head) {
             if(i->exp == j->exp){
                 poly* temp = j;
                 i->coeff += j->coeff;
-                i->next = j->next;
-                j->next->prev = i;
+                j->prev->next = j->next;
+                j->next->prev = j->prev;
                 j = j->next;
                 delete(temp);
                 continue;

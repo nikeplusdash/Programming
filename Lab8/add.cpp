@@ -50,7 +50,7 @@ Node* Node::Add(Node* head1,Node* head2) {
     int sum = 0,carry = 0;
     while(i != NULL && j != NULL) {
         sum = i->data + j->data;
-        if(sum < 10) {
+        if(sum+carry < 10) {
             list = list->Insert(sum+carry,list);
             carry = 0;
         }
