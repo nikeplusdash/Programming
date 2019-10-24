@@ -205,7 +205,7 @@ void Tree::Parent(Tree* head,int x) {
 void Tree::Ancestors(Tree* head,int x) {
     if(!head) return;
     static bool found = false;
-    if(head->data == x) found = true;
+    if(head->data == x) {found = true;return;}
     if(head->lc && !found) Ancestors(head->lc,x);
     if(head->rc && !found) Ancestors(head->rc,x);
     if(found) std::cout << head->data << " ";
@@ -239,7 +239,7 @@ void Tree::Siblings(Tree* head, int x) {
         }
     }
     if(!parent || !parent->lc || !parent->rc) {std::cout << "No siblings" << std::endl;return;}
-    std::cout << "Sibbling: " << (parent->lc->data == x ? parent->rc->data : parent->lc->data) << std::endl;
+    std::cout << "Sibling: " << (parent->lc->data == x ? parent->rc->data : parent->lc->data) << std::endl;
 }
 
 int Tree::Depth(Tree* head){
@@ -283,28 +283,28 @@ int main() {
 	
 	std::cout << " -- Init Tree -- " << std::endl;
 	Tree = ref.Init();
-    // MirrorTree = ref.Mirror(Tree);
+    MirrorTree = ref.Mirror(Tree);
 
-	// std::cout << "Displaying Tree in Inorder: "; ref.InorderIterative(Tree);
-	// std::cout << "Displaying Tree in Preorder: "; ref.PreorderIterative(Tree);
-    // std::cout << "Displaying Tree in Postorder: "; ref.PostorderIterative(Tree);
-    // std::cout << "Displaying Tree in Postorder: "; ref.PostorderIterativeTwo(Tree);
-    // std::cout << "Displaying Tree in Levelorder: "; ref.Levelorder(Tree);
-    // std::cout << "Displaying Tree in Levelorder Reverse: "; ref.LevelorderReverse(Tree);
-    // MirrorTree = ref.Reverse(MirrorTree);
+	std::cout << "Displaying Tree in Inorder: "; ref.InorderIterative(Tree);
+	std::cout << "Displaying Tree in Preorder: "; ref.PreorderIterative(Tree);
+    std::cout << "Displaying Tree in Postorder: "; ref.PostorderIterative(Tree);
+    std::cout << "Displaying Tree in Postorder: "; ref.PostorderIterativeTwo(Tree);
+    std::cout << "Displaying Tree in Levelorder: "; ref.Levelorder(Tree);
+    std::cout << "Displaying Tree in Levelorder Reverse: "; ref.LevelorderReverse(Tree);
+    MirrorTree = ref.Reverse(MirrorTree,MirrorTree);
 
-    // std::cout << "Displaying Mirror Tree in Levelorder: "; ref.Levelorder(MirrorTree);
-    // std::cout << "Find Ancestors: ";
-    // std::cin >> x;
-    // std::cout << "Ancestors of " << x << ": ";
-    // ref.Ancestors(Tree,x);
-    // std::cout << std::endl;
-    // std::cout << "Find Descedants: ";
-    // std::cin >> x;
-    // ref.Descedants(Tree,x);
-    // std::cout << "Find Parent: ";
-    // std::cin >> x;
-    // ref.Parent(Tree,x);
+    std::cout << "Displaying Mirror Tree in Levelorder: "; ref.Levelorder(MirrorTree);
+    std::cout << "Find Ancestors: ";
+    std::cin >> x;
+    std::cout << "Ancestors of " << x << ": ";
+    ref.Ancestors(Tree,x);
+    std::cout << std::endl;
+    std::cout << "Find Descedants: ";
+    std::cin >> x;
+    ref.Descedants(Tree,x);
+    std::cout << "Find Parent: ";
+    std::cin >> x;
+    ref.Parent(Tree,x);
     std::cout << "Find Sibling: ";
     std::cin >> x;
     ref.Siblings(Tree,x);
