@@ -40,7 +40,7 @@ Tree* ptree(std::string s) {
             Tree* node = new Tree(s[i]);
             node->rc = node1;
             node->lc = node2;
-            
+
             stk.push(node);
         }
     }
@@ -56,7 +56,7 @@ int eval (Tree* head) {
     if(head->c == '-') return left-right;
     if(head->c == '*') return left*right;
     if(head->c == '/') return left/right;
-    
+
 }
 
 void Inorder(Tree* head) {
@@ -69,8 +69,8 @@ void Inorder(Tree* head) {
 void Preorder(Tree* head) {
     if(!head) return;
 	std::cout << head->c << " ";
-    Inorder(head->lc);
-    Inorder(head->rc);
+    Preorder(head->lc);
+    Preorder(head->rc);
 }
 
 int main() {
