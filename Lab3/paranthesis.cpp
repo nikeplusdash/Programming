@@ -1,18 +1,6 @@
 #include<iostream>
 #include<stdlib.h>
 #define max 100
-class Stack {
-    private:
-    char *a;
-    int n;
-    public:
-    Stacks(){n=-1;a=(char*) malloc(n*sizeof(char));}
-    void push(char x){a = (char*) realloc(a,++n*sizeof(char));a[n]=x;}
-    void pop(){a = (char*) realloc(a,--n*sizeof(char));}
-    char top(){return a[n];}
-    bool empty(){return n==-1;}
-    void display(){std::cout<<"----- Stack -----" <<std::endl;for(int i=n;i>-1;i--)std::cout<<"\t"<<a[i]<<std::endl;}
-};
 
 class Stacks {
 private:
@@ -26,7 +14,6 @@ public:
     bool empty(){return n==-1;}
     void display(){std::cout<<s<<std::endl;}
 };
-
 
 std::string paran(std::string s){
     Stacks k;

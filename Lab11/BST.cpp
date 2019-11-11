@@ -8,6 +8,8 @@ class Node {
     Node* lc;
     Node* rc;
     public:
+    Node(){}
+    Node(int x){data=x;lc=rc=NULL;}
     Node* Insert(Node* root) {
         Node* prev,* curr,* temp;
         temp = new Node();
@@ -20,7 +22,7 @@ class Node {
             prev = curr;
             if (curr->data < temp->data) {
                 cout << temp->data <<" went to right of " << curr->data << endl;
-                curr = curr->rc;    
+                curr = curr->rc;
             }
             else if(curr->data > temp->data) {
                 cout << temp->data <<" went to left of " << curr->data << endl;
@@ -35,6 +37,12 @@ class Node {
         if (prev->data > temp->data) prev->lc = temp;
         else prev->rc = temp;
         return root;
+    }
+    Node* Insert(Node* root,int x){
+        if(!root) return new Node(x);
+        else if(root->data > x) root->lc = Insert(root->lc,x);
+        else if(root->data < x) root->rc = Insert(root->rc,x);
+        else return root;
     }
     Node* Search (Node* root,int x) {
         Node* curr = root;
@@ -110,7 +118,8 @@ int main() {
         cin >> x;
         switch(x) {
             case 1:
-            root = ref.Insert(root);
+            cin >> i;
+            root = ref.Insert(root,i);
             break;
             case 2:
             cout << "Delete: ";
