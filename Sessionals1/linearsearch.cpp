@@ -15,7 +15,7 @@ int linearsearchrecursion(int a[],int n,int key){
         return n;
     }
     else {
-        linearsearchrecursion(a,--n,key);
+        linearsearchrecursion(a,n-1,key);
     }
 }
 

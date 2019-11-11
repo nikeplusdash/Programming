@@ -18,8 +18,7 @@ int deepstrsearch(char str[], char substr[])
         if (str[i] == substr[0])
         {
             int j = 0;
-            for (j = 1; str[i + j] == substr[j] && j < l2; j++)
-                ;
+            for (j = 1; str[i + j] == substr[j] && j < l2; j++);
             if (j == l2)
                 std::cout << "Instance found at:" << i << std::endl;
         }

@@ -21,7 +21,7 @@ class Tree {
     void LevelorderReverse(Tree*);
     void Parent(Tree*,int);
     void Ancestors(Tree*,int);
-    void Descedants(Tree*,int);
+    void Descendants(Tree*,int);
     void Siblings(Tree*,int);
     int Depth(Tree*);
     Tree* Reverse(Tree*,Tree*);
@@ -211,10 +211,10 @@ void Tree::Ancestors(Tree* head,int x) {
     if(found) std::cout << head->data << " ";
 }
 
-void Tree::Descedants(Tree* head,int x) {
+void Tree::Descendants(Tree* head,int x) {
     if(head->data == x) {std::cout << "Descedants of " << head->data << ": ";Levelorder(head);return;}
-    if(head->lc) Descedants(head->lc,x);
-    if(head->rc) Descedants(head->rc,x);
+    if(head->lc) Descendants(head->lc,x);
+    if(head->rc) Descendants(head->rc,x);
 }
 
 void Tree::Siblings(Tree* head, int x) {
@@ -301,7 +301,7 @@ int main() {
     std::cout << std::endl;
     std::cout << "Find Descedants: ";
     std::cin >> x;
-    ref.Descedants(Tree,x);
+    ref.Descendants(Tree,x);
     std::cout << "Find Parent: ";
     std::cin >> x;
     ref.Parent(Tree,x);
