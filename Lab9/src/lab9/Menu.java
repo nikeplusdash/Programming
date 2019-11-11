@@ -3,10 +3,7 @@ import java.util.Scanner;
 
 public class Menu {
     public  static Boolean checkPalindrome(String s){
-        StringBuffer str = new StringBuffer(s);
-        StringBuffer rev = new StringBuffer(str.reverse());
-        String r = rev.toString();
-        return r.equals(s);
+        return s.equals(new String(new StringBuffer(s).reverse()));
     }
     public static void toAlphabetical(String s) {
         StringBuffer str = new StringBuffer(s);

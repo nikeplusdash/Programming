@@ -19,7 +19,8 @@ class App {
         button.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                count.setText(++i+"");
+                if(!count.getText().equals("Count")) count.setText(Integer.parseInt(count.getText())+1+"");
+                else count.setText("0");
             }
         });
         jf.add(label);

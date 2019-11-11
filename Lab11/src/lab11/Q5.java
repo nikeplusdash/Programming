@@ -4,7 +4,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 class SyncMessage {
-    public synchronized void message(int msg){
+    public void message(int msg){
         System.out.println("Table of "+msg+": ");
         try {
             for(int i=1;i<=10;i++) {
@@ -22,6 +22,7 @@ class Thread5 extends Thread {
     SyncMessage sm;
     Thread5(int x,String s,SyncMessage a){
         super(s);
+        this.setPriority(x);
         i=x;
         sm=a;
         msg=s;
@@ -29,7 +30,7 @@ class Thread5 extends Thread {
     }
     @Override
     public void run(){
-        sm.message(i);
+        synchronized(sm){sm.message(i);}
     }
 }
 public class Q5 {
