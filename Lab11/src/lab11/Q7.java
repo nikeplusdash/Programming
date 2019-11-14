@@ -1,7 +1,6 @@
 package lab11;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import javax.swing.*;
 
 class App {
@@ -16,9 +15,15 @@ class App {
         JTextField count = new JTextField("Count");
         count.setSize(50,80);
         JButton button = new JButton("Count");
-        button.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        button.addActionListener((ActionEvent e) -> {
+            if(!count.getText().equals("Count")) count.setText(Integer.parseInt(count.getText())+1+"");
+            else count.setText("0");
+        });
+        button.addKeyListener(new KeyListener(){
+            public void keyTyped(KeyEvent e){}
+            public void keyReleased(KeyEvent e){}
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyChar()!='\n'){return;}
                 if(!count.getText().equals("Count")) count.setText(Integer.parseInt(count.getText())+1+"");
                 else count.setText("0");
             }
