@@ -1,5 +1,4 @@
 #include <iostream>
-#include <typeinfo>
 
 template <class T>
 class Stacks {
@@ -12,8 +11,8 @@ class Stacks {
     Stacks(){head = NULL;}
     Stacks(T x) {data = x;next = NULL;}
     void Push(T x) {
-        Stacks<T>* temp = new Stacks(x);
-        if(!head) {head = temp;return;}
+        Stacks* temp = new Stacks(x);
+        if(!head) {head = temp;std::cout << x << " was pushed to the stack." << std::endl;return;}
         temp->next = head;
         head = temp;
         std::cout << x << " was pushed to the stack." << std::endl;
@@ -21,7 +20,7 @@ class Stacks {
     void Display() {
         if(!head) {std::cout << "Empty Stack" << std::endl;return;}
         std::cout << "Stack: ";
-        Stacks<T>* curr = head;
+        Stacks* curr = head;
         while(curr) {
             std::cout << curr->data;
             if(curr->next) std::cout << " -> ";
@@ -31,7 +30,7 @@ class Stacks {
     }
     void Pop() {
         if(!head) return;
-        Stacks<T>* temp = head;
+        Stacks* temp = head;
         head = head->next;
         std::cout << temp->data << " was popped from the stack." << std::endl;
         delete temp;

@@ -1,5 +1,4 @@
 #include <iostream>
-#include <typeinfo>
 
 template <class T>
 class LinkedLists {
@@ -12,27 +11,26 @@ class LinkedLists {
     LinkedLists(){head = NULL;}
     LinkedLists(T x) {data = x;next = NULL;}
     void Insert(T x) {
-        LinkedLists<T>* temp = new LinkedLists(x);
-        LinkedLists<T>* curr = head;
-        if(!head) {head = temp;return;}
+        LinkedLists* temp = new LinkedLists(x);
+        LinkedLists* curr = head;
+        if(!head) {head = temp;std::cout << x << " was inserted in the list." << std::endl;return;}
         while(curr->next) {curr = curr->next;}
         curr->next = temp;
         std::cout << x << " was inserted in the list." << std::endl;
     }
-    void InsertAt(T x,T pos) {
-        if(!head) return;
-        LinkedLists<T>* temp = new LinkedLists(x),*curr = head,*prev = curr;
+    void InsertAt(T x,int pos) {
+        LinkedLists* temp = new LinkedLists(x),*curr = head,*prev = curr;
         int apos = pos--;
-        if(!pos && !head) {head = temp;}
-        if(!pos) {temp->next = head;head = temp;}
-        while(pos) {prev = curr;curr = curr->next;pos--;}
+        if(!pos && !head) {head = temp;return;}
+        if(!pos) {temp->next = head;head = temp;return;}
+        while(pos && curr) {prev = curr;curr = curr->next;pos--;}
         prev->next = temp;
         temp->next = curr;
         std::cout << x << " was inserted at " << apos << " in the list." << std::endl;
     }
     void Search(T x) {
         if(!head) return;
-        LinkedLists<T>* curr = head;
+        LinkedLists* curr = head;
         while(curr) {
             if(curr->data == x) {std::cout << x << " was found." << std::endl;return;}
             curr = curr->next;
@@ -42,7 +40,7 @@ class LinkedLists {
     void Display() {
         if(!head) {std::cout << "Empty List" << std::endl;return;}
         std::cout << "Linked List: ";
-        LinkedLists<T>* curr = head;
+        LinkedLists* curr = head;
         while(curr) {
             std::cout << curr->data;
             if(curr->next) std::cout << " -> ";
@@ -52,11 +50,11 @@ class LinkedLists {
     }
     void Delete( T x) {
         if(!head) return ;
-        LinkedLists<T>* curr = head,*prev = curr;
+        LinkedLists* curr = head,*prev = curr;
         while(curr) {
-            if(head->data == x) {LinkedLists<T>* temp = head;head = head->next;delete temp;}
+            if(head->data == x) {LinkedLists* temp = head;head = head->next;curr=head;delete temp;}
             else if(curr->data == x) {
-                LinkedLists<T>* temp = curr;
+                LinkedLists* temp = curr;
                 curr = curr->next;
                 prev->next = curr;
                 delete temp;
