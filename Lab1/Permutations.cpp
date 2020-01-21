@@ -14,6 +14,8 @@ void Permutations(std::string s){
 }
 
 int main() {
+    freopen("myfile.txt","w",stdout);
     std::string s = "abc";
     Permutations(s);
+    fclose(stdout);
 }

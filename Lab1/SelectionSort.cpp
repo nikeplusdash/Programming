@@ -11,10 +11,11 @@ void SelectionSort(int a[],int n) {
 
 int main() {
     int a[] = {999,9,6,96,666,69,-69,-96};
+    int n = sizeof(a)/sizeof(int);
     std::cout << "Before Sorting: [ ";
     for(int i:a) std::cout << i << " ";
     std::cout << "]" << std::endl;
-    SelectionSort(a,8);
+    SelectionSort(a,n);
     std::cout << "After Sorting: [ ";
     for(int i:a) std::cout << i << " ";
     std::cout << " ]" << std::endl;

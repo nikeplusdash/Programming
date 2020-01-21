@@ -14,5 +14,6 @@ int BinarySearch(int a[],int n,int key) {
 
 int main() {
     int a[] = {1,2,3,4,5,6,7,8,9,0};
-    std::cout << (BinarySearch(a,10,15)?"Found":"Not Found") << std::endl;
+    int n = sizeof(a)/sizeof(int);
+    std::cout << (BinarySearch(a,n,15)?"Found":"Not Found") << std::endl;
 }

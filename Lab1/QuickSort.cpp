@@ -17,10 +17,11 @@ void QuickSort(int a[],int l,int r) {
 
 int main() {
     int a[] = {999,9,6,96,666,69,-69,-96};
+    int n = sizeof(a)/sizeof(int);
     std::cout << "Before Sorting: [ ";
     for(int i:a) std::cout << i << " ";
     std::cout << "]" << std::endl;
-    QuickSort(a,0,7);
+    QuickSort(a,0,n);
     std::cout << "After Sorting: [ ";
     for(int i:a) std::cout << i << " ";
     std::cout << " ]" << std::endl;
