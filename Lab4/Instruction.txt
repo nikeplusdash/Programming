@@ -1,0 +1,12 @@
+Graph:
+    1:View AdjMatrix()
+    2:View AdjList()
+    3:DFS using Matrix(x)
+    4:DFS using List(x)
+    5:BFS using Matrix(x)
+    6:BFS using List(x)
+    7:Mother Vertex()
+    8:Transpose()
+    9:Connected()
+    10:Path between x & y(x,y)
+    11:Cycles()

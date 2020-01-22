@@ -5,7 +5,7 @@ class Queue {
     private:
     Queue* front;
     Queue* tail;
-    protected:
+    public:
     T data;
     Queue* next;
     public:
@@ -36,17 +36,40 @@ class Queue {
         }
         std::cout << std::endl;
     }
-    void Dequeue() {
-        if(!front) return;
+    T Dequeue() {
+        if(Empty()) return T();
         Queue* temp = front;
+        T x = temp->data;
         if(front == tail) {
             front = tail = NULL;
             // std::cout << temp->data << " was removed from the queue." << std::endl;
             delete temp;
-            return;
+            return x;
         }
         front = front->next;
         // std::cout << temp->data << " was removed from the queue." << std::endl;
         delete temp;
+        return x;
+    }
+    bool Contains(T x) {
+        if(!front) return 0;
+        Queue* curr = front;
+        while(curr) {
+            if(curr->data == x) {
+                // std::cout << x << " was found." << std::endl;
+                return 1;}
+            curr = curr->next;
+        }
+        // std::cout << x << " was not found." << std::endl;
+        return 0;
+    }
+    bool Empty() {
+        return !front;
+    }
+    T Front(){
+        return front->data;
+    }
+    T Back(){
+        return tail->data;
     }
 };

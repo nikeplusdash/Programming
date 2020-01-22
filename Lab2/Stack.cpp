@@ -4,7 +4,7 @@ template <class T>
 class Stacks {
     private:
     Stacks* head;
-    protected:
+    public:
     T data;
     Stacks* next;
     public:
@@ -32,11 +32,32 @@ class Stacks {
         }
         std::cout << std::endl;
     }
-    void Pop() {
-        if(!head) return;
+    T Pop() {
+        if(Empty()) return T();
         Stacks* temp = head;
-        head = head->next;
+        if(head->next) head = head->next;
+        else head = NULL;
+        T x = temp->data;
         // std::cout << temp->data << " was popped from the stack." << std::endl;
         delete temp;
+        return x;
+    }
+    bool Contains(T x) {
+        if(!head) return 0;
+        Stacks* curr = head;
+        while(curr) {
+            if(curr->data == x) {
+                // std::cout << x << " was found." << std::endl;
+                return 1;}
+            curr = curr->next;
+        }
+        // std::cout << x << " was not found." << std::endl;
+        return 0;
+    }
+    bool Empty() {
+        return !head;
+    }
+    T Top() {
+        return head->data;
     }
 };

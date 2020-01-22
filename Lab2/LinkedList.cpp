@@ -4,12 +4,21 @@ template <class T>
 class LinkedLists {
     private:
     LinkedLists* head;
-    protected:
+    public:
     T data;
     LinkedLists* next;
     public:
     LinkedLists(){head = NULL;}
     LinkedLists(T x) {data = x;next = NULL;}
+    LinkedLists* getHead() {return head;}
+    void Clear(){
+        while(head){
+            LinkedLists* temp = head;
+            head = head->next;
+            delete temp;
+        }
+        delete head;
+    }
     void Insert(T x) {
         LinkedLists* temp = new LinkedLists(x);
         LinkedLists* curr = head;
@@ -30,7 +39,7 @@ class LinkedLists {
         temp->next = curr;
         // std::cout << x << " was inserted at " << apos << " in the list." << std::endl;
     }
-    int Search(T x) {
+    bool Search(T x) {
         if(!head) return 0;
         LinkedLists* curr = head;
         while(curr) {
@@ -47,11 +56,25 @@ class LinkedLists {
             std::cout << "Empty List" << std::endl;
             return;
         }
-        std::cout << "Linked List: ";
+        std::cout << "List: ";
         LinkedLists* curr = head;
         while(curr) {
             std::cout << curr->data;
             if(curr->next) std::cout << " -> ";
+            curr = curr->next;
+        }
+        std::cout << std::endl;
+    }
+    void Display(T i) {
+        if(!head) {
+            std::cout << "Vertex <V" << i << ">: Empty" << std::endl ;
+            return;
+        }
+        std::cout << "Vertex <V" << i << ">: " ;
+        LinkedLists* curr = head;
+        while(curr) {
+            std::cout << curr->data;
+            if(curr->next) std::cout << " - ";
             curr = curr->next;
         }
         std::cout << std::endl;
