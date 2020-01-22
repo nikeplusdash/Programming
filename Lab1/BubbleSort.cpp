@@ -1,20 +1,34 @@
 #include<iostream>
+#include<chrono>
 
-void BubbleSort(int a[],int n) {
-    if(n == 0) return;
-    for(int i = 0;i < n-1;i++)
-        if(a[i] > a[i+1]) std::swap(a[i],a[i+1]);
-    BubbleSort(a,n-1);
+using namespace std::chrono;
+
+int count;
+
+void BubbleSort(int a[],int n,int j) {
+    if(j == n) {count++;return;}
+    for(int i = 0;i < n-1-j;i++){
+        count++;
+        if(a[i] > a[i+1]) {std::swap(a[i],a[i+1]);count++;}
+    }
+    BubbleSort(a,n,++j);count++;
 }
 
 int main() {
-    int a[] = {999,9,6,96,666,69,-69,-96};
-    int n = sizeof(a)/sizeof(int);
+    int n;
+    std::cin >> n;
+    int a[n];
+    for(int i=0;i<n;i++) std::cin >> a[i];
     std::cout << "Before Sorting: [ ";
     for(int i:a) std::cout << i << " ";
     std::cout << "]" << std::endl;
-    BubbleSort(a,n);
+    auto start = high_resolution_clock::now();
+    BubbleSort(a,n,0);
+    auto stop = high_resolution_clock::now();
     std::cout << "After Sorting: [ ";
     for(int i:a) std::cout << i << " ";
     std::cout << " ]" << std::endl;
+    std::cout << "Step Count: " << count << "\nSize of Array: " << n << std::endl;
+    auto duration = duration_cast<microseconds>(stop - start);
+    std::cout << "Time taken: " << duration.count() << "us" << std::endl;
 }

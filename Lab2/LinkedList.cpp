@@ -13,10 +13,12 @@ class LinkedLists {
     void Insert(T x) {
         LinkedLists* temp = new LinkedLists(x);
         LinkedLists* curr = head;
-        if(!head) {head = temp;std::cout << x << " was inserted in the list." << std::endl;return;}
+        if(!head) {head = temp;
+        // std::cout << x << " was inserted in the list." << std::endl;
+        return;}
         while(curr->next) {curr = curr->next;}
         curr->next = temp;
-        std::cout << x << " was inserted in the list." << std::endl;
+        // std::cout << x << " was inserted in the list." << std::endl;
     }
     void InsertAt(T x,int pos) {
         LinkedLists* temp = new LinkedLists(x),*curr = head,*prev = curr;
@@ -26,19 +28,25 @@ class LinkedLists {
         while(pos && curr) {prev = curr;curr = curr->next;pos--;}
         prev->next = temp;
         temp->next = curr;
-        std::cout << x << " was inserted at " << apos << " in the list." << std::endl;
+        // std::cout << x << " was inserted at " << apos << " in the list." << std::endl;
     }
-    void Search(T x) {
-        if(!head) return;
+    int Search(T x) {
+        if(!head) return 0;
         LinkedLists* curr = head;
         while(curr) {
-            if(curr->data == x) {std::cout << x << " was found." << std::endl;return;}
+            if(curr->data == x) {
+                // std::cout << x << " was found." << std::endl;
+                return 1;}
             curr = curr->next;
         }
-        std::cout << x << " was not found." << std::endl;
+        // std::cout << x << " was not found." << std::endl;
+        return 0;
     }
     void Display() {
-        if(!head) {std::cout << "Empty List" << std::endl;return;}
+        if(!head) {
+            std::cout << "Empty List" << std::endl;
+            return;
+        }
         std::cout << "Linked List: ";
         LinkedLists* curr = head;
         while(curr) {
@@ -61,6 +69,6 @@ class LinkedLists {
             }
             else {prev = curr;curr = curr->next;}
         }
-        std::cout << x << " was deleted from the list." << std::endl;
+        // std::cout << x << " was deleted from the list." << std::endl;
     }
 };

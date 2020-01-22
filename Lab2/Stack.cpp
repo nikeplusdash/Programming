@@ -12,10 +12,14 @@ class Stacks {
     Stacks(T x) {data = x;next = NULL;}
     void Push(T x) {
         Stacks* temp = new Stacks(x);
-        if(!head) {head = temp;std::cout << x << " was pushed to the stack." << std::endl;return;}
+        if(!head) {
+            head = temp;
+            // std::cout << x << " was pushed to the stack." << std::endl;
+            return;
+        }
         temp->next = head;
         head = temp;
-        std::cout << x << " was pushed to the stack." << std::endl;
+        // std::cout << x << " was pushed to the stack." << std::endl;
     }
     void Display() {
         if(!head) {std::cout << "Empty Stack" << std::endl;return;}
@@ -32,7 +36,7 @@ class Stacks {
         if(!head) return;
         Stacks* temp = head;
         head = head->next;
-        std::cout << temp->data << " was popped from the stack." << std::endl;
+        // std::cout << temp->data << " was popped from the stack." << std::endl;
         delete temp;
     }
 };
