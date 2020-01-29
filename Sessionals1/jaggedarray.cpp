@@ -35,6 +35,7 @@ class JaggedArray {
                 for(int j=0;j<len[i];j++)
                     x[++d]=a[i][j];
             a = (int**) realloc(a,1*sizeof(int*));
+            len = (int*) realloc(len,1*sizeof(int));
             a[0] = x;len[0]=d+1;n=1;
         }
 };

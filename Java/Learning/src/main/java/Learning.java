@@ -1,3 +1,5 @@
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -5,6 +7,10 @@ import java.io.FileReader;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
@@ -20,8 +26,12 @@ class stuff implements FilenameFilter {
     }
 }
 public class Learning {
-    public static void main(String[] args) throws ArrayIndexOutOfBoundsException{
+    public static void main(String[] args) throws ArrayIndexOutOfBoundsException, URISyntaxException, MalformedURLException, IOException{
         Scanner in = new Scanner(System.in);
+        DataOutputStream dos;
+        String s = new String();
+        
+//        System.out.println(f);
 //        char a[] = {'j','a','v','a'};
 //        int x=6,y=32,z=40;
 //        try {
@@ -63,7 +73,9 @@ public class Learning {
 //        System.out.println(s.strip());
 //        System.out.println(l);
 //        FileReader f1 = new FileReader("C:\\Users\\nikep\\Desktop");
-//        File f = new File("C:\\Users\\nikep\\Desktop");
+//        File f = new File("C:\\Users\\nikep\\Desktop\\ok.txt");
+//        FileInputStream fis = new FileInputStream(f);
+//        System.out.println();
 //        FilenameFilter ff = new stuff("pdf");
 //        FileInputStream fis = new FileInputStream(f);
 //        File[] p = f.listFiles(ff);
@@ -81,17 +93,18 @@ public class Learning {
 //        String s=new String(fis.readAllBytes());
 //        String[] k = s.split("a");
 //        System.out.println(s.replaceAll(s.charAt(0)+"",""));
-        String[] ok = {"hi","hello","okay","hi","hello","hello"};
-        ArrayList<String> list = new ArrayList<String>();
-        ArrayList<Integer> count = new ArrayList<Integer>();
-        for(String s:ok){
-            if(!list.contains(s)) {list.add(s);count.add(1);}
-            else {int i=list.indexOf(s);count.set(i,count.get(i)+1);
-//            System.out.println("---"+count.get(i)+"---"+s);
-            }
-        }
-        for(String s:list){
-            System.out.println(s+":"+count.get(list.indexOf(s)));
-        }
+//        String[] ok = {"hi","hello","okay","hi","hello","hello"};
+//        ArrayList<String> list = new ArrayList<String>();
+//        ArrayList<Integer> count = new ArrayList<Integer>();
+//        for(String s:ok){
+//            if(!list.contains(s)) {list.add(s);count.add(1);}
+//            else {int i=list.indexOf(s);count.set(i,count.get(i)+1);
+////            System.out.println("---"+count.get(i)+"---"+s);
+//            }
+//        }
+//        for(String s:list){
+//            System.out.println(s+":"+count.get(list.indexOf(s))+Math.abs(1.5));
+//        }
+        
     }
 }

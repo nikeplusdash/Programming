@@ -9,10 +9,7 @@ void swap(int a[],int i,int j) {
 int pivotSet(int a[],int l,int r) {
     int x = r;
     int pivot_ele = a[l];
-    for(int j=r;j>l;j--)
-        if(a[j]>pivot_ele) {
-            swap(a,j,x--);
-        }
+    for(int j=r;j>l;j--) if(a[j]>pivot_ele) swap(a,j,x--);
     swap(a,l,x);
     return x;
 }

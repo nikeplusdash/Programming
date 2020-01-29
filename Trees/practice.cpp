@@ -149,15 +149,13 @@ void Tree::PostorderIterativeTwo(Tree* head) {
     TreeStack s1,s2;
     s1.push(head);
     while(!s1.empty()) {
-        Tree* curr = s1.top();
+        Tree* curr = s1.top();s1.pop();
         s2.push(curr);
-        s1.pop();
         if(curr->lc) s1.push(curr->lc);
         if(curr->rc) s1.push(curr->rc);
     }
     while(!s2.empty()) {
-        Tree* curr = s2.top();
-        s2.pop();
+        Tree* curr = s2.top();s2.pop();
         std::cout << curr->data << " ";
     }
     std::cout << std::endl;

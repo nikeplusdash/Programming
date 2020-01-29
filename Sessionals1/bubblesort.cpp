@@ -17,9 +17,7 @@ void bubblesort(int a[],int n){
 void bubblesortrecursion(int a[],int n){
     if(n==0) return;
     else {
-        int max = 0;
-        for(int i=0;i<n;i++)  if(a[max]<a[i]) max=i;
-        swap(a,max,n-1);
+        for(int i=0;i<n-1;i++)  if(a[n-1]<a[i]) swap(a,i,n-1);
         bubblesortrecursion(a,n-1);
     }
 }
