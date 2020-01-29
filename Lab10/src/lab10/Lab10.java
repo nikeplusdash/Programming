@@ -1,6 +1,9 @@
 package lab10;
+import java.awt.Color;
 import java.io.*;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Lab10 {

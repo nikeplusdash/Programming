@@ -15,7 +15,7 @@ class Runnable1 implements Runnable {
             int i=b;b=a+b;a=i;
         }
         System.out.println("Fibonacci.txt is being written");
-        File f = new File("C:\\Users\\STUDENT\\Desktop\\Fibonacci.txt");
+        File f = new File("C:\\Users\\nikep\\Desktop\\Fibonacci.txt");
         try {
             FileOutputStream fos = new FileOutputStream(f);
             fos.write(s.getBytes());
@@ -44,7 +44,7 @@ class Runnable2 implements Runnable {
             a++;
         }
         System.out.println("Prime.txt is being written");
-        File f = new File("C:\\Users\\STUDENT\\Desktop\\Primes.txt");
+        File f = new File("C:\\Users\\nikep\\Desktop\\Primes.txt");
         try {
             FileOutputStream fos = new FileOutputStream(f);
             fos.write(s.getBytes());
@@ -58,8 +58,8 @@ class Runnable2 implements Runnable {
 class Runnable3 implements Runnable {
     @Override
     public void run(){
-        File f1 = new File("C:\\Users\\STUDENT\\Desktop\\Primes.txt");
-        File f2 = new File("C:\\Users\\STUDENT\\Desktop\\Fibonacci.txt");
+        File f1 = new File("C:\\Users\\nikep\\Desktop\\Primes.txt");
+        File f2 = new File("C:\\Users\\nikep\\Desktop\\Fibonacci.txt");
         try {
             FileInputStream fis1 = new FileInputStream(f1);
             FileInputStream fis2 = new FileInputStream(f2);
