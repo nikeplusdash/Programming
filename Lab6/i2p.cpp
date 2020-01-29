@@ -1,4 +1,5 @@
 #include<iostream>
+#include<algorithm>
 #define MAX 100
 
 class Stacks {
@@ -24,7 +25,7 @@ std::string i2p(std::string s){
     std::string op,f;
     Stacks k;
     for(int i=s.length()-1;i>-1;i--){
-        if(s[i]>='a'&&s[i]<='z'||s[i]>='A'&&s[i]<='Z'||s[i]>='0'&&s[i]<='9')  {op+=s[i];}
+        if(std::isalpha(s[i])||std::isdigit(s[i]))  {op+=s[i];}
         else if(s[i]==')')  k.push(s[i]);
         else if(s[i]=='(')  {
             while(k.top()!=')'){op+=k.top();k.pop();}
@@ -39,8 +40,8 @@ std::string i2p(std::string s){
         }
     }
     while(!k.empty()){op+=k.top();k.pop();}
-    for(int i=op.length()-1;i>-1;i--)f+=op[i];
-    return f;
+    std::reverse(op.begin(),op.end());
+    return op;
 }
 
 int main(){

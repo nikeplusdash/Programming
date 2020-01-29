@@ -61,9 +61,29 @@ Node* Node::Add(Node* head1,Node* head2) {
         i = i->next;
         j = j->next;
     }
+    while(i != NULL) {
+        if(i->data+carry < 10) {
+            list = list->Insert(i->data+carry,list);
+            carry = 0;
+        }
+        else {
+            list = list->Insert(i->data-10+carry,list);
+            carry = 1;
+        }
+        i = i->next;
+    }
+    while(j != NULL) {
+        if(j->data+carry < 10) {
+            list = list->Insert(j->data+carry,list);
+            carry = 0;
+        }
+        else {
+            list = list->Insert(j->data-10+carry,list);
+            carry = 1;
+        }
+        j = j->next;
+    }
     if(i == NULL && j == NULL && carry != 0) list = list->Insert(carry,list);
-    while(i != NULL) {list = list->Insert(i->data+carry,list);i = i->next;carry = 0;}
-    while(j != NULL) {list = list->Insert(j->data+carry,list);j = j->next;carry = 0;}
     list = list->Reverse(list);
     return list;
 }

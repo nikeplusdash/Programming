@@ -25,7 +25,7 @@ int calculation(char c1,char c2,char op){
 int p2ie(std::string s){
     Stacks k;
     for(int i=0;i<s.length();i++){
-        if(s[i]>='0'&&s[i]<='9')    {int x=s[i];x-='0';k.push(x);}
+        if(std::isdigit(s[i]))    {k.push(s[i]-'0');}
         else {
             char x = k.top();k.pop();
             char y = k.top();k.pop();

@@ -24,7 +24,7 @@ std::string i2p(std::string s){
     std::string op;
     Stacks k;
     for(int i=0;i<s.length();i++){
-        if(s[i]>='a'&&s[i]<='z'||s[i]>='A'&&s[i]<='Z'||s[i]>='0'&&s[i]<='9')  {op+=s[i];}
+        if(std::isalpha(s[i])||std::isdigit(s[i]))  {op+=s[i];}
         else if(s[i]=='(')  k.push(s[i]);
         else if(s[i]==')')  {
             while(k.top()!='('){op+=k.top();k.pop();}

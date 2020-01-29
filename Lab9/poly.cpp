@@ -114,7 +114,6 @@ poly* poly::Remove(poly* head) {
                 continue;
             }
             j=j->next;
-
         } while(j != head);
         i=i->next;
     } while(i->next != head);

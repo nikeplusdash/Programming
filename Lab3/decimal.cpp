@@ -16,9 +16,9 @@ void Convert(int n,int k){
     Stacks s;
     while(k!=0&&n!=1){
         s.push(k%n);
-        k=k/n;
+        k/=n;
     }
-    if(n=1){while(k!=0){s.push(1);k--;}}
+    if(n==1) return;
     while(!s.emp()){
         if(s.top()>=10){
             std::cout<<(char)(s.top()+55);

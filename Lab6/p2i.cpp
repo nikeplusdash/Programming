@@ -24,7 +24,7 @@ std::string p2i(std::string s){
     Stacks k;
     for(int i=s.length()-1;i>-1;i--){
         if(s[i]==' ') i--;
-        else if(s[i]>='a'&&s[i]<='z'||s[i]>='A'&&s[i]<='Z'||s[i]>='0'&&s[i]<='9')    k.push(s[i]);
+        else if(std::isalpha(s[i])||std::isdigit(s[i]))   k.push(s[i]);
         else {
             std::string x = k.top();k.pop();
             std::string y = k.top();k.pop();
