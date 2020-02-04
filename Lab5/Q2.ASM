@@ -1,0 +1,34 @@
+TITLE HEX TO BCD
+.MODEL SMALL
+.DATA
+    HEX DB 99H
+    BCD DB 3 DUP(?)
+.STACK 64
+.CODE
+CONVERT PROC   
+    MOV CL,0AH
+    DIV CL
+    RET
+CONVERT ENDP
+START:
+    MOV AX,@DATA
+    MOV DS,AX
+
+    LEA DI,BCD+2
+    MOV AH,0
+    MOV AL,HEX
+    MOV CX,5
+    
+    BACK:
+        PUSH CX
+        CALL CONVERT
+        POP CX
+        MOV [DI],AH
+        MOV AH,0
+        DEC DI
+    LOOP BACK
+
+    MOV AH,4CH
+    INT 21H
+END START
+ENDS

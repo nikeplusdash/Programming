@@ -1,0 +1,35 @@
+.MODEL SMALL
+.DATA
+    ARRAY DW 10 DUP(1234H)
+    RESULT DW ?,?
+.CODE
+CORRECT PROC
+    DAA
+    ADC AH,0
+    XCHG AH,AL
+    DAA
+    XCHG AH,AL
+    ADC RESULT,0
+    RET
+CORRECT ENDP
+START:
+    MOV AX,@DATA
+    MOV DS,AX
+
+    LEA SI,ARRAY
+    MOV CX,9
+    MOV AX,[SI]
+    ADD SI,2
+    CLC
+
+    BACK:
+        ADC AX,[SI]
+        CALL CORRECT
+        ADD SI,2
+    LOOP BACK
+    XCHG AH,AL
+    MOV RESULT+1,AX
+    MOV AH,4CH
+    INT 21H
+END START
+ENDS
