@@ -3,32 +3,40 @@ TITLE HEX TO BCD
 .DATA
     HEX DB 99H
     BCD DB 3 DUP(?)
-.STACK 64
+.STACK
 .CODE
 CONVERT PROC   
     MOV CL,0AH
     DIV CL
+    MOV [DI],AH
+    MOV AH,0
+    DEC DI
     RET
 CONVERT ENDP
-START:
+MAIN PROC
     MOV AX,@DATA
     MOV DS,AX
 
     LEA DI,BCD+2
     MOV AH,0
     MOV AL,HEX
-    MOV CX,5
+    MOV CX,3
     
     BACK:
         PUSH CX
         CALL CONVERT
         POP CX
-        MOV [DI],AH
-        MOV AH,0
-        DEC DI
     LOOP BACK
+
+    INC DI
+    MOV AL,[DI+1]
+    MOV CL,4
+    SHL AL,CL
+    ADD AL,[DI+2]
+    MOV [DI+1],AL
+    MOV BYTE PTR [DI+2],0
 
     MOV AH,4CH
     INT 21H
-END START
-ENDS
+MAIN ENDP
+END MAIN
