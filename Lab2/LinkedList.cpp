@@ -4,13 +4,15 @@ template <class T>
 class LinkedLists {
     private:
     LinkedLists* head;
+    std::string name;
     public:
     T data;
     LinkedLists* next;
     public:
-    LinkedLists(){head = NULL;}
-    LinkedLists(T x) {data = x;next = NULL;}
+    LinkedLists(){head = NULL;name="List";}
+    LinkedLists(T x) {data = x;next = NULL;name="List";}
     LinkedLists* getHead() {return head;}
+    void setName(std::string s) {name=s;}
     void Clear(){
         while(head){
             LinkedLists* temp = head;
@@ -56,7 +58,7 @@ class LinkedLists {
             std::cout << "Empty List" << std::endl;
             return;
         }
-        std::cout << "List: ";
+        std::cout << name << ": ";
         LinkedLists* curr = head;
         while(curr) {
             std::cout << curr->data;
