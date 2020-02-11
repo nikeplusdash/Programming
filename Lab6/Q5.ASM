@@ -1,0 +1,30 @@
+.MODEL SMALL
+.DATA
+    NUM DB 05H
+    RES DW ?
+.STACK
+.CODE
+FACT PROC
+    CMP AX,01
+    JZ DOWN
+    PUSH AX
+    DEC AX
+    CALL FACT
+    POP AX
+    MUL RES
+    MOV RES,AX
+    RET
+    DOWN:
+        MOV RES,1
+    RET
+FACT ENDP
+MAIN PROC
+    MOV AX,@DATA
+    MOV DS,AX
+    MOV AL,NUM
+    MOV AH,0
+    CALL FACT
+    MOV AH,4CH
+    INT 21H
+MAIN ENDP
+END MAIN
