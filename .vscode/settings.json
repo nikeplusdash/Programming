@@ -61,6 +61,15 @@
         "typeindex": "cpp",
         "typeinfo": "cpp",
         "valarray": "cpp",
-        "stdc++.h": "c"
+        "stdc++.h": "c",
+        "codecvt": "cpp",
+        "shared_mutex": "cpp",
+        "cuchar": "cpp",
+        "iterator": "cpp",
+        "map": "cpp",
+        "memory_resource": "cpp",
+        "random": "cpp",
+        "set": "cpp",
+        "string": "cpp"
     }
 }

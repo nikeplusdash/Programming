@@ -32,7 +32,7 @@ int main() {
     for(int i:a) std::cout << i << " ";
     std::cout << "]" << std::endl;
     auto start = high_resolution_clock::now();
-    QuickSort(a,0,n);
+    QuickSort(a,0,n-1);
     auto stop = high_resolution_clock::now();
     std::cout << "After Sorting: [ ";
     for(int i:a) std::cout << i << " ";

@@ -26,15 +26,9 @@ int main() {
     sacc.setName("Container: ");
     for(int &i:sack) std::cin >> i;
     QuickSort(sack,0,n);
-    for(int i:sack) {
+    for(int i:sack)
         if(c > i) {c-=i;sacc.Insert(i);}
-    }
-    std::cout << "Do you wanna see the containment(0/1): " << std::endl;
-    std::cin >> x;
-    if(x) {
-        std::cout << "Capacity:" << container << "\nCapacity Left:" << c << "\n";
-        
-        sacc.Display();
-    }
+    std::cout << "Capacity:" << container << "\nCapacity Left:" << c << "\n";
+    sacc.Display();
     else return 0;
 }
