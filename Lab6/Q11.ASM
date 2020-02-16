@@ -27,9 +27,6 @@ PROGRAM:
             CMP AX,BX
             JZ DOWN
             JC BIGBZ
-        BIGBZ:
-            XCHG AX,BX
-            JMP BACK
         BACK:
             MOV DX,0
             DIV BX
@@ -37,6 +34,9 @@ PROGRAM:
             JZ DOWN
             MOV AX,DX
             JMP UP
+        BIGBZ:
+            XCHG AX,BX
+            JMP BACK
         DOWN:
             MOV GCD,BX
             RET

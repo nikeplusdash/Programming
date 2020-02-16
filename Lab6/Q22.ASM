@@ -9,9 +9,6 @@ CALC PROC
         CMP AX,BX
         JZ DOWN
         JC BIGBZ
-    BIGBZ:
-        XCHG AX,BX
-        JMP BACK
     BACK:
         MOV DX,0
         DIV BX
@@ -19,6 +16,9 @@ CALC PROC
         JZ DOWN
         MOV AX,DX
         JMP UP
+    BIGBZ:
+        XCHG AX,BX
+        JMP BACK
     DOWN:
         MOV GCD,BX
     RET
