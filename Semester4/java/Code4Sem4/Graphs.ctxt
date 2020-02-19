@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=Graphs
+comment1.params=
+comment1.target=Graphs()
+comment2.params=V
+comment2.target=Graphs(int)
+comment2.text=\r\n\ Constructor\ to\ initialize\ the\ objecgt\ of\ Graph\r\n\ \r\n\ @param\ V\ Vertices\ for\ the\ given\ graph\r\n
+comment3.params=src\ dest\ isBi
+comment3.target=void\ AddEdge(int,\ int,\ boolean)
+comment3.text=\r\n\ Adding\ and\ edge\ to\ the\ graph\r\n\ \r\n\ @param\ src\ from\ edge\r\n\ @param\ dest\ to\ edge\r\n\ @param\ isBi\ is\ bidirectional\ or\ not\r\n
+comment4.params=
+comment4.target=void\ Display()
+comment4.text=\r\n\ Displays\ the\ adjacency\ matrix\ and\ the\ adjacency\ list\r\n
+comment5.params=v
+comment5.target=void\ BFS(int)
+comment6.params=
+comment6.target=void\ main()
+numComments=7
