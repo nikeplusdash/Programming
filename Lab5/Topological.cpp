@@ -5,26 +5,29 @@ using namespace std;
 
 int TopoSort(Graph* G){
     int **Matrix = G->AdjMatrix;
-    int n=G->n,inDegree[n+1],i=0;
+    int n=G->n,inDegree[n+1],visited[n+1],i=0;
     for(int &i:inDegree) i=0;
+    for(int &i:visited) i=0;
     for(int i=1;i<=n;i++)
         for(int j=1;j<=n;j++)
-            inDegree[i] = Matrix[j][i];
+            inDegree[i] += Matrix[j][i];
     Stacks<int> S,TS;
     for(int i=1;i<=n;i++)
     {
-        if(!inDegree[i]) S.Push(i);
+        if(!inDegree[i]&&!visited[i]) S.Push(i);
+        visited[i]=1;
         while (!S.Empty())
         {
-            int k = S.Pop();TS.Push(k);
-            for(int j=1;j<=n;j++)
+            int k = S.Pop();
+            TS.Push(k);
+            for(int j=n;j>0;j--)
             {
                 if(Matrix[k][j]) inDegree[j]--;
-                if(!inDegree[i]) S.Push(j);
+                if(!inDegree[j]&&!visited[j]) {S.Push(j);visited[j]=1;}
             }
         }
     }
-    S.Display();
+    TS.Display();
 }
 
 int main(){
@@ -45,5 +48,8 @@ int main(){
     else {
         goto goback;
     }
+    G->GraphViewnator();
+    G->AdjMatrixViewer();
     TopoSort(G);
+    return 0;
 }
