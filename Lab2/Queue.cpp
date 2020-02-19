@@ -9,7 +9,7 @@ class Queue {
     T data;
     Queue* next;
     public:
-    Queue(){front= tail = NULL;}
+    Queue(){front = tail = NULL;}
     Queue(T x) {data = x;next = NULL;}
     void Enqueue(T x) {
         Queue* temp = new Queue(x);
@@ -42,7 +42,7 @@ class Queue {
         T x = temp->data;
         if(front == tail) {
             front = tail = NULL;
-            // std::cout << temp->data << " was removed from the queue." << std::endl;
+            // std::cout << temp->data << " was removed from the queue. and reset" << std::endl;
             delete temp;
             return x;
         }
