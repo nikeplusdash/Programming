@@ -5,26 +5,31 @@ using namespace std;
 
 int TopoSort(Graph* G){
     int **Matrix = G->AdjMatrix;
-    int n=G->n,inDegree[n+1],i=0;
+    int n=G->n,inDegree[n+1],reached[n+1],i=0;
     for(int &i:inDegree) i=0;
+    for(int &i:reached) i=0;
     for(int i=1;i<=n;i++)
         for(int j=1;j<=n;j++)
-            inDegree[i] = Matrix[j][i];
-    Stacks<int> S,TS;
+            inDegree[i] += Matrix[j][i];
+    Queue<int> S;
+    int order[n+1],l=0;
     for(int i=1;i<=n;i++)
     {
-        if(!inDegree[i]) S.Push(i);
+        if(!inDegree[i]) S.Enqueue(i);
         while (!S.Empty())
         {
-            int k = S.Pop();TS.Push(k);
+            int k = S.Dequeue();order[++l] = k;
+            reached[k] = 1;
             for(int j=1;j<=n;j++)
-            {
-                if(Matrix[k][j]) inDegree[j]--;
-                if(!inDegree[i]) S.Push(j);
+            {   
+                if(reached[j]) continue;
+                if(Matrix[k][j] != 0) inDegree[j]--;
+                if(!inDegree[j]) {S.Enqueue(j);reached[j]=1;}
             }
         }
     }
-    S.Display();
+    for(int i=1;i<n+1;i++) cout << order[i] << " ";
+    cout << endl;
 }
 
 int main(){
@@ -45,5 +50,6 @@ int main(){
     else {
         goto goback;
     }
+    G->AdjMatrixViewer();
     TopoSort(G);
 }
