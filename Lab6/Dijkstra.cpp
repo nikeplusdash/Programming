@@ -62,31 +62,34 @@ class Graph {
     }
 };
 
+class Compare
+{
+    public:
+    int operator() (pair<int,int> i,pair<int,int> j)
+    {
+        return i.second > j.second;
+    }
+};
+
 void Dijkstra(const Graph &G,int start)
 {
-    queue<int> Q;
+    priority_queue<pair<int,int>,vector<pair<int,int>>,Compare> Q;
     int dist[G.V+1],parent[G.V+1],visited[G.V+1],vertices[G.V],k=1,org = start;
     for(int &i:vertices) {i = k++;dist[i] = 0;parent[i] = 0;visited[i] = 0;}
-    Q.push(start);
-    // for(pair<int,int> i:G.E[start]) {dist[i.first] = 0;}
+    Q.push(pair<int,int>(start,0));
     while(!Q.empty())
     {
-        start = Q.front();Q.pop();
+        start = Q.top().first;Q.pop();
         visited[start] = 1;
         for(const pair<int,int> &i:G.E[start])
         {
-            if(!visited[i.first] && dist[i.first] == 0)
+            if(!visited[i.first] && i.second+dist[start] < dist[i.first] || dist[i.first] == 0)
             {
-                dist[i.first] = i.second;
+                dist[i.first] = i.second+dist[start];
                 parent[i.first] = start;
-                Q.push(i.first);
             }
-            else if(!visited[i.first] && i.second+dist[start] > dist[i.first])
-            {
-                dist[i.first] = i.second;
-                parent[i.first] = start;
-                Q.push(i.first);
-            }
+            else continue;
+            Q.push(i);
         }
     }
     cout << "Shortest Distance from " << org << ":\n";
@@ -97,8 +100,8 @@ void Dijkstra(const Graph &G,int start)
             int j = i;
             cout << "Vertex <" << i << ">:: ";
             cout << "Distance: " << dist[i] << " ";
-            cout << "Path: [ ";
-            while(parent[j]) {cout << parent[j] << " ";j = parent[j];}
+            cout << "Path: [ " << j << " <- ";
+            while(parent[j]) {cout << parent[j];if(parent[j]==org) cout << ""; else cout << " <- ";j = parent[j];}
             cout << "]" << endl;
         }
     }
