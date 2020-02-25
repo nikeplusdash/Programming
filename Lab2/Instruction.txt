@@ -1,0 +1,26 @@
+LinkedLists:
+    1:Insert(x)
+    2:InsertAt(x,i)
+    3:Search(x)
+    4:Delete(x)
+    5:Display()
+    6:Clear()
+
+Queue:
+    1:Enqueue(x)
+    2:Dequeue()
+    3:Display()
+    4:Search(x)
+     :Contains()
+     :Empty()
+     :Front()
+     :Back()
+
+Stack:
+    1:Push(x)
+    2:Pop()
+    3:Display()
+    4:Search(x)
+     :Contains()
+     :Top()
+     :Back()

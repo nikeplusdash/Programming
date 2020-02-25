@@ -1,0 +1,10 @@
+For a given input string, create a linked list and display the positions of all occurences of 2 consecutive vowels.
+
+Eg.
+roof
+r->o->o->f
+1->2->3->4
+
+mountain
+m->o->u->n->t->a->i->n
+   2->3        6->7
