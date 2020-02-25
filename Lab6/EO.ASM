@@ -1,0 +1,33 @@
+DATA SEGMENT
+MSG1 DB 'NO IS EVEN $'
+MSG2 DB 'NO IS ODD $'
+N DB 34H
+DATA ENDS
+CODE SEGMENT
+ASSUME CS:CODE,DS:DATA
+START:MOV AX,DATA
+      MOV DS,AX
+      MOV BL,N
+      AND BL,1
+      JZ E
+      CALL ODDD
+      JMP EXIT
+      E:CALL EVE
+      
+      EXIT : MOV AH,4CH
+      INT 21H
+      EVE PROC
+      LEA DX,MSG1
+      MOV AH,09
+      INT 21H
+      RET
+      EVE ENDP
+      ODDD PROC
+      LEA DX,MSG2
+      MOV AH,09
+      INT 21H
+      RET
+      ODDD ENDP
+      CODE ENDS
+      END START
+      

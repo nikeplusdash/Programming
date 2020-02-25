@@ -1,0 +1,26 @@
+DATA SEGMENT
+NUM DW 0C33FH
+BTS DB 16 DUP (?)
+COUNT DB 4H
+DATA ENDS
+CODE SEGMENT
+ASSUME CS:CODE,DS:DATA
+START:MOV AX,DATA
+      MOV DS,AX
+      MOV AX,NUM
+      MOV DH,0AH
+      LEA SI,BTS
+      MOV CX,COUNT
+     UP: DIV AX,CH
+      MOV BH,O
+      MOV BL,AH
+      MOV DL,2
+      DIV BX,DL
+      MOV [SI],BH
+      LOOP UP
+
+      INC SI
+      CODE ENDS
+      END START
+      
+
