@@ -8,39 +8,16 @@
 
 char* philosopher_state[3] = {"THINKING\0","HUNGRY\0","EATING\0"};
 typedef enum {THINKING,HUNGRY,EATING} states;
-int iterations;
+int iterations = 0;
 typedef struct Monitor
 {
     int n;
     pthread_cond_t *self;
     pthread_mutex_t mutex; 
     states *state;
-    void (*Pickup) (struct Monitor*,int i);
-    void (*Putdown) (struct Monitor*,int i);
-    void (*Test) (struct Monitor*,int i);
 } Monitor;
 
-void Up(Monitor* M,int i)
-{
-    M->state[i] = HUNGRY;
-    M->Test(M,i);
-    pthread_mutex_lock(&M->mutex);
-    while(M->state[i] != EATING){
-        printf("Philosopher[%d] is still %s\n",i+1,philosopher_state[1]);
-        pthread_cond_wait(&M->self[i],&M->mutex);
-    }
-    pthread_mutex_unlock(&M->mutex);
-}
-
-void Down(Monitor* M,int i)
-{
-    M->state[i] = THINKING;
-    printf("Philosopher[%d] is now %s again\n",i+1,philosopher_state[0]);
-    M->Test(M,LEFT);
-    M->Test(M,RIGHT);
-}
-
-void Testing(Monitor* M,int i)
+void Test(Monitor* M,int i)
 {
     if(M->state[LEFT] != EATING && M->state[RIGHT] != EATING && M->state[i] == HUNGRY)
     {
@@ -52,13 +29,30 @@ void Testing(Monitor* M,int i)
     }
 }
 
+void Pickup(Monitor* M,int i)
+{
+    M->state[i] = HUNGRY;
+    Test(M,i);
+    pthread_mutex_lock(&M->mutex);
+    while(M->state[i] != EATING){
+        pthread_cond_wait(&M->self[i],&M->mutex);
+        printf("Philosopher[%d] is still %s\n",i+1,philosopher_state[1]);
+    }
+    pthread_mutex_unlock(&M->mutex);
+}
+
+void Putdown(Monitor* M,int i)
+{
+    M->state[i] = THINKING;
+    printf("Philosopher[%d] is now %s again\n",i+1,philosopher_state[0]);
+    Test(M,LEFT);
+    Test(M,RIGHT);
+}
+
 void Initialize(Monitor* M,int max)
 {
     int i;
     M->n = max;
-    M->Pickup = &Up;
-    M->Putdown = &Down;
-    M->Test = &Testing;
     M->state = (states*) malloc(max*sizeof(states));
     M->self = (pthread_cond_t*) malloc(max*sizeof(pthread_cond_t));
     pthread_mutex_init(&M->mutex,NULL);
@@ -68,27 +62,27 @@ void Initialize(Monitor* M,int max)
         M->state[i] = THINKING;
         printf("Philosopher[%d] is now %s\n",i+1,philosopher_state[0]);
     }
+    printf("\n");
 }
 
 Monitor M;
 void *Philosopher(void* x)
 {
-    int j=iterations,*i = x;
+    int j = iterations,*i = x;
     while(j--)
     {
-        M.Pickup(&M,*i);
-        M.Putdown(&M,*i);
+        Pickup(&M,*i);
+        Putdown(&M,*i);
     }
-    pthread_exit(0);
 }
 
 int main(int argv,char* argc[])
 {
     int heads = atoi(argc[1]),i;
+    iterations = atoi(argc[2]);
     char file[50];
     FILE* fp;
     pthread_t *philosopher;
-    iterations = atoi(argc[2]);
     sprintf(file,"output_%d.txt",rand()%25);
     fp = freopen(file,"w+",stdout);
     Initialize(&M,heads);

@@ -1,0 +1,46 @@
+Philosopher[1] is now THINKING
+Philosopher[2] is now THINKING
+Philosopher[3] is now THINKING
+Philosopher[4] is now THINKING
+Philosopher[5] is now THINKING
+Philosopher[6] is now THINKING
+Philosopher[7] is now THINKING
+Philosopher[8] is now THINKING
+Philosopher[9] is now THINKING
+Philosopher[10] is now THINKING
+Philosopher[11] is now THINKING
+Philosopher[12] is now THINKING
+Philosopher[13] is now THINKING
+Philosopher[14] is now THINKING
+Philosopher[15] is now THINKING
+
+Philosopher[2] is now EATING
+Philosopher[2] is now THINKING again
+Philosopher[3] is now EATING
+Philosopher[3] is now THINKING again
+Philosopher[4] is now EATING
+Philosopher[4] is now THINKING again
+Philosopher[5] is now EATING
+Philosopher[5] is now THINKING again
+Philosopher[6] is now EATING
+Philosopher[6] is now THINKING again
+Philosopher[7] is now EATING
+Philosopher[7] is now THINKING again
+Philosopher[8] is now EATING
+Philosopher[8] is now THINKING again
+Philosopher[9] is now EATING
+Philosopher[9] is now THINKING again
+Philosopher[10] is now EATING
+Philosopher[10] is now THINKING again
+Philosopher[11] is now EATING
+Philosopher[11] is now THINKING again
+Philosopher[12] is now EATING
+Philosopher[12] is now THINKING again
+Philosopher[13] is now EATING
+Philosopher[13] is now THINKING again
+Philosopher[14] is now EATING
+Philosopher[14] is now THINKING again
+Philosopher[15] is now EATING
+Philosopher[15] is now THINKING again
+Philosopher[5] is now EATING
+Philosopher[5] is now THINKING again
