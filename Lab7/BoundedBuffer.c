@@ -47,7 +47,6 @@ void Initialize(State* S,int n)
 void *Producer(void* s)
 {
     State* S = (State*)s;
-    usleep(500);
     sem_wait(&S->empty);
     sem_wait(&S->mutex);
         S->buffer[pos++] = S->value;
@@ -65,12 +64,13 @@ void *Producer(void* s)
 void *Consumer(void* s)
 {
     State* S = (State*)s;
-    usleep(1000);
     item consumed;
     sem_wait(&S->full);
     sem_wait(&S->mutex);
         consumed = S->buffer[--pos];
+        sleep(1);
         printf("\nConsumed: [ %c ]",consumed);
+        sleep(0);
         S->value--;
     sem_post(&S->mutex);
     sem_post(&S->empty);
