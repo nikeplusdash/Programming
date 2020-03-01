@@ -2,6 +2,8 @@
     "files.associations": {
         "stdlib.h": "c",
         "limits": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "iostream": "cpp",
+        "ostream": "cpp"
     }
 }
