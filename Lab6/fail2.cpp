@@ -65,47 +65,31 @@ class Graph {
 class Compare
 {
     public:
-    int operator() (pair<int,int> i,pair<int,int> j)
+    int operator() (pair<pair<int,int>,int> i,pair<pair<int,int>,int> j)
     {
-        return i.second > j.second;
+        return i.first.second > j.first.second;
     }
 };
 
-void Dijkstra(const Graph &G,int start)
+void Prim(const Graph &G)
 {
-    priority_queue<pair<int,int>,vector<pair<int,int>>,Compare> Q;
-    int dist[G.V+1],parent[G.V+1],visited[G.V+1],vertices[G.V],k=1,org = start;
-    for(int &i:vertices) {i = k++;dist[i] = 0;parent[i] = 0;visited[i] = 0;}
-    Q.push(pair<int,int>(start,0));
+    priority_queue<pair<pair<int,int>,int>,vector<pair<pair<int,int>,int>>,Compare> Q;
+    int visited[G.V+1],vertices[G.V],k=0,start=1;
+    Graph T(G.V);
+    for(int &i:vertices) {i = k++;visited[i] = 0;}
+    Q.push(pair<pair<int,int>,int>(pair<int,int>(start,0),0));
     while(!Q.empty())
     {
-        start = Q.top().first;Q.pop();
+        start = Q.top().first.first;Q.pop();
         visited[start] = 1;
         for(auto &i:G.E[start])
         {
-            if(!visited[i.first] && (i.second+dist[start] < dist[i.first] || dist[i.first] == 0))
-            {
-                dist[i.first] = i.second+dist[start];
-                parent[i.first] = start;
-            }
-            else continue;
-            Q.push(i);
+            if(!visited[i.first]) Q.push(pair<pair<int,int>,int>(i,start));
+            visited[i.first] = 1;
         }
+        T.AddEdge(Q.top().second,Q.top().first.first,Q.top().first.second,0);
     }
-    cout << "Shortest Distance from " << org << ":\n";
-    for(int &i: vertices)
-    {
-        if(i != org)
-        {
-            int j = i;
-            cout << "Vertex <" << i << ">:: ";
-            cout << "Distance: " << dist[i] << " ";
-            cout << "Path: [ " << j << " <- ";
-            while(parent[j]) {cout << parent[j];if(parent[j]==org) cout << ""; else cout << " <- ";j = parent[j];}
-            cout << "]" << endl;
-        }
-    }
-    cout << endl;
+    T.Display();
 }
 
 int main()
@@ -134,7 +118,7 @@ int main()
             break;
             case 4: 
             cin >> x;
-            Dijkstra(G,x);
+            Prim(G);
             break;
             default:
             return 0;

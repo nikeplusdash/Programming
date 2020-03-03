@@ -48,10 +48,6 @@ int main(){
     else {
         goto goback;
     }
-<<<<<<< HEAD
-    G->GraphViewnator();
-=======
->>>>>>> 0948f61de0520dab053b67d9c2412779225b242f
     G->AdjMatrixViewer();
     TopoSort(G);
     return 0;

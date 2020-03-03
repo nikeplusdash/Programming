@@ -25,10 +25,10 @@ int main() {
     LinkedLists<int> sacc;
     sacc.setName("Container: ");
     for(int &i:sack) std::cin >> i;
-    QuickSort(sack,0,n);
+    QuickSort(sack,0,n-1);
     for(int i:sack)
         if(c > i) {c-=i;sacc.Insert(i);}
     std::cout << "Capacity:" << container << "\nCapacity Left:" << c << "\n";
     sacc.Display();
-    else return 0;
+    return 0;
 }

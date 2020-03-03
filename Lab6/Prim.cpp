@@ -1,4 +1,5 @@
 #include<iostream>
+#include<unistd.h>
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -71,41 +72,48 @@ class Compare
     }
 };
 
-void Dijkstra(const Graph &G,int start)
+void Prim(const Graph &G)
 {
     priority_queue<pair<int,int>,vector<pair<int,int>>,Compare> Q;
-    int dist[G.V+1],parent[G.V+1],visited[G.V+1],vertices[G.V],k=1,org = start;
-    for(int &i:vertices) {i = k++;dist[i] = 0;parent[i] = 0;visited[i] = 0;}
+    int visited[G.V+1],parent[G.V+1],cost[G.V+1],vertices[G.V],k=1,start=1;
+    Graph T(G.V);
+    for(int &i:vertices) {i = k++;visited[i] = 0;cost[i] = 0;parent[i] = 0;}
     Q.push(pair<int,int>(start,0));
+    cost[0] = parent[0] = 0;
     while(!Q.empty())
     {
+        // cout << Q.top().first << "----\n";
         start = Q.top().first;Q.pop();
         visited[start] = 1;
         for(auto &i:G.E[start])
         {
-            if(!visited[i.first] && (i.second+dist[start] < dist[i.first] || dist[i.first] == 0))
-            {
-                dist[i.first] = i.second+dist[start];
-                parent[i.first] = start;
+            if(!visited[i.first]) {Q.push(i);parent[i.first]=start;cost[i.first]=i.second;visited[i.first] = 1;}
+            else if(i.second < cost[i.first]) {
+                parent[i.first]=start;cost[i.first] = i.second;
+                queue<pair<int,int>> q;
+                while(!Q.empty())
+                {
+                    pair<int,int> s = Q.top();Q.pop();
+                    if(s.first == i.first && s.second > i.second) q.push(pair<int,int>(i.first,i.second));
+                    else q.push(s);
+                }
+                while(!q.empty())
+                {
+                    Q.push(q.front());q.pop();
+                }
             }
-            else continue;
-            Q.push(i);
+            int top = Q.top().first;
+            T.AddEdge(parent[top],top,Q.top().second,0);
         }
+        // for(int i=1;i<=G.V;i++)
+        //     cout << parent[i] << " ";
+        // cout << endl;
+        // for(int i=1;i<=G.V;i++)
+        //     cout << cost[i] << " ";
+        // cout << endl;
+        sleep(3);T.Display();
     }
-    cout << "Shortest Distance from " << org << ":\n";
-    for(int &i: vertices)
-    {
-        if(i != org)
-        {
-            int j = i;
-            cout << "Vertex <" << i << ">:: ";
-            cout << "Distance: " << dist[i] << " ";
-            cout << "Path: [ " << j << " <- ";
-            while(parent[j]) {cout << parent[j];if(parent[j]==org) cout << ""; else cout << " <- ";j = parent[j];}
-            cout << "]" << endl;
-        }
-    }
-    cout << endl;
+    T.Display();
 }
 
 int main()
@@ -134,7 +142,7 @@ int main()
             break;
             case 4: 
             cin >> x;
-            Dijkstra(G,x);
+            Prim(G);
             break;
             default:
             return 0;

@@ -46,7 +46,7 @@ void GoW(int p[],int w[],int n,int c)
     int profit=0,k=0;
     for(int &i:x) i = 0;
     for(int &i:track) i=k++;
-    QuickSort(w,0,n-1,0,track);
+    QuickSort(w,0,n-1,1,track);
     for(int i=0;i<n;i++) {
         if(c >= w[i]) {c-=w[i];x[track[i]]=1;profit+=p[track[i]];}
     }
@@ -65,14 +65,15 @@ void GoPD(int p[],int w[],int n,int c)
     int k=0,j=0;
     for(int &i:x) i = 0;
     for(int &i:track) i=k++;
-    for(auto &i:pd) i=(float)p[j]/w[j++];
+    for(float &i:pd) i=(float)p[j]/w[j++];
     QuickSort(pd,0,n-1,0,track);
     for(int i=0;i<n;i++) {
         if(c >= w[track[i]]) {c-=w[track[i]];x[track[i]]=1;profit+=p[track[i]];}
     }
     std::cout << "Sack(Profit = " << profit << "): \n";
-    for(int i=0;i<n;i++)
-        if(x[i]) std::cout << "[ " << w[track[i]] << " - " << p[track[i]] << " ] x " << x[i] << std::endl;
+    for(int i=0;i<n;i++){
+        if(x[track[i]]) std::cout << "[ " << w[track[i]] << " - " << p[track[i]] << " ] x " << x[track[i]] << std::endl;
+    }
     return;
 }
 
@@ -99,7 +100,7 @@ void FracKS(int p[],int w[],int n,int c)
     }
     std::cout << "Sack(Profit = " << profit << "): \n";
     for(int i=0;i<n;i++)
-        if(x[i]>0) std::cout << "[ " << w[track[i]] << " - " << p[track[i]] << " ] x " << x[i] << std::endl;
+        if(x[track[i]]>0) std::cout << "[ " << w[track[i]] << " - " << p[track[i]] << " ] x " << x[track[i]] << std::endl;
     return;
 }
 
