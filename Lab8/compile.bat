@@ -1,3 +1,4 @@
+@echo off
 set var=%1
 set con=%2
 masm.exe %var%;

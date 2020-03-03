@@ -4,12 +4,10 @@ printf macro msg
     int 21h
 endm
 data segment
-    a db 5,4,9,3
-    ; 9,8,6,1,3,5,2,4,8,7
+    a db 5,4,9,3,9,-4,-1,-1,8,6,1,3,5,2,4,8,7
     n db $-a
     msg1 db "BEFORE SORTING: $"
     msg2 db 10,13,"AFTER SORTING: $"
-    msg3 db 10,13,"DURING SORTING: $"
     space db " $"
 data ends
 stack segment
@@ -17,31 +15,27 @@ stack segment
 stack ends
 code segment
     assume ds:data,cs:code,ss:stack
-selectionsort proc
-;     mov ch,0
-;     mov cl,n
-;     dec cl
-;     mov si,-1
-; loop1:
-;     inc si
-;     mov bx,si
-;     mov di,bx
-;     mov al,[a+si]
-;     mov bl,cl
-; loop2:
-;     inc di
-;     cmp al,[a+di]
-;     jc notsmall
-;     mov al,[a+di]
-; notsmall:
-;     dec bl
-;     jnz loop2
-;     ; printf msg3
-;     ; call printarray
-    
-;     loop loop1
-ret
-selectionsort endp
+bubblesort proc
+    mov ch,0
+    mov cl,n
+    dec cl
+loop1:
+    mov si,0
+    mov bl,cl
+loop2:
+    mov al,a[si]
+    mov ah,a[si+1]
+    cmp al,ah
+    jl noswap
+    mov a[si],ah
+    mov a[si+1],al
+noswap:
+    inc si
+    dec bl
+    jnz loop2
+    loop loop1
+    ret
+bubblesort endp
 printarray proc
     mov ch,0
     mov cl,n
@@ -65,11 +59,11 @@ main proc
     mov ds,ax
     mov ax,stack
     mov ss,ax
-    ; printf msg1
-    ; call printarray
-    call selectionsort
-    ; printf msg2
-    ; call printarray
+    printf msg1
+    call printarray
+    call bubblesort
+    printf msg2
+    call printarray
     mov ah,4ch
     int 21h
 code ends
