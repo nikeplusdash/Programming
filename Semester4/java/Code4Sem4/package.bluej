@@ -1,8 +1,8 @@
 #BlueJ package file
 editor.fx.0.height=737
 editor.fx.0.width=814
-editor.fx.0.x=360
-editor.fx.0.y=28
+editor.fx.0.x=740
+editor.fx.0.y=69
 objectbench.height=96
 objectbench.width=656
 package.divider.horizontal=0.6
@@ -32,7 +32,7 @@ target1.x=160
 target1.y=10
 target2.height=50
 target2.name=Sorting
-target2.showInterface=false
+target2.showInterface=true
 target2.type=ClassTarget
 target2.width=80
 target2.x=70

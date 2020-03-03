@@ -1,22 +1,29 @@
 import java.util.LinkedList;
 import java.util.Iterator;
+import java.util.Scanner;
 
 public class Graphs {
     private int V;
     private LinkedList<Integer> E[];
     private int M[][];
-    Graphs(){}
+    Graphs()
+    {
+    }
     /**
      * Constructor to initialize the objecgt of Graph
      * 
      * @param V Vertices for the given graph
      */
+    @SuppressWarnings("unchecked")
     Graphs(int V)
     {
         this.V = V;
-        this.E = new LinkedList[V+1];
+        this.E = (LinkedList<Integer>[]) new LinkedList<?>[V+1];
         this.M = new int[V+1][];
-        for(int i = 1;i <= V;i++) {E[i] = new LinkedList<>();M[i] = new int[V+1];}
+        for(int i = 1;i <= V;i++) 
+        {
+            E[i] = new LinkedList<>();M[i] = new int[V+1];
+        }
     }
     /**
      * Adding and edge to the graph
@@ -42,7 +49,6 @@ public class Graphs {
         for(int i=1;i<=V;i++) {for(int j:E[i]) System.out.print(j+" ");System.out.print("\n");}
         System.out.print("\n");
     }
-
     public void BFS(int v)
     {
         System.out.print("BFS from "+v+": ");
@@ -67,7 +73,6 @@ public class Graphs {
         }
         System.out.print("\n");
     }
-
     public void DFS(int v)
     {
         System.out.print("DFS from "+v+": ");
@@ -92,8 +97,8 @@ public class Graphs {
         }
         System.out.print("\n");
     }
-
-    public static void main(){
+    public static void main(String args[]){
+        //var in = new Scanner(System.in);
         Graphs G = new Graphs(6);
         G.AddEdge(1, 2, false);
         G.AddEdge(2, 3, true);
